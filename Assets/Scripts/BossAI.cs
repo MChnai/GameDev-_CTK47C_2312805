@@ -2,7 +2,8 @@
 
 public class BossAI : MonoBehaviour
 {
-    public enum BossState { Idle, Chasing, Attacking, Phase3_QTE }
+    public enum BossState { Idle, Chasing, Attacking, Phase3_QTE, GetAttack }
+
     [Header("AI State")]
     public BossState currentState = BossState.Idle;
 
@@ -42,6 +43,10 @@ public class BossAI : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
+    [Header("Hurt Settings")]
+    public float hurtDuration = 0.4f; // Thời gian Boss bị khựng khi dính đòn
+    private float hurtTimer;
+
     void Start()
     {
         currentHP = maxHP;
@@ -54,12 +59,33 @@ public class BossAI : MonoBehaviour
 
     void Update()
     {
-        if (kairi == null || isQTEActive) return;
+        if (kairi == null) return;
+
+        // 1. ƯU TIÊN SỐ 1: VÒNG LẶP QTE KHI ĐANG HOẠT ĐỘNG
+        if (isQTEActive)
+        {
+            HandleQTE();
+            return;
+        }
+
+        // 2. ƯU TIÊN SỐ 2: ĐÓNG BĂNG HOÀN TOÀN KHI ĐANG BỊ TRÚNG ĐÒN (Đã đưa lên trên đầu)
+        if (currentState == BossState.GetAttack)
+        {
+            if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y); // Ép Boss đứng im tại chỗ
+
+            if (Time.time - hurtTimer >= hurtDuration)
+            {
+                currentState = BossState.Chasing; // Hết thời gian khựng, quay lại đuổi theo
+                isAttacking = false; // Giải phóng cờ chặn hành động
+                Debug.Log("[BOSSAI] Hết khựng đòn, quay lại trạng thái chiến đấu.");
+            }
+            return; // Thoát sớm, ngăn chặn tuyệt đối việc tính khoảng cách và ép đè hoạt ảnh Idle/Run
+        }
 
         // --- CƠ CHẾ KIỂM TRA CHẠM ĐẤT ---
         HandleGroundCheck();
 
-        // --- QUẢN LÝ TRẠNG THÁI AI (CHỈ CẬP NHẬT KHI KHÔNG ĐANG CHÉM) ---
+        // --- QUẢN LÝ TRẠNG THÁI AI (CHỈ CẬP NHẬT KHI KHÔNG TRONG HOẠT ẢNH CHÉM VÀ KHÔNG BỊ TRÚNG ĐÒN) ---
         if (!isAttacking)
         {
             float distanceToKairi = Vector3.Distance(transform.position, kairi.position);
@@ -83,13 +109,13 @@ public class BossAI : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (rb == null || isQTEActive || kairi == null)
+        if (rb == null || isQTEActive || kairi == null || currentState == BossState.GetAttack)
         {
-            if (rb != null) rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             return;
         }
 
-        // Nếu đang bận tấn công (isAttacking = true), ép vận tốc trục X về 0 để đứng im vung kiếm
+        // Nếu đang bận tấn công, ép vận tốc trục X về 0 để đứng im vung kiếm
         if (isAttacking)
         {
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
@@ -110,29 +136,19 @@ public class BossAI : MonoBehaviour
 
     void HandleOrientationAndAnimations()
     {
-        // 1. LUÔN XOAY MẶT VỀ PHÍA KAIRI (Trừ khi đang bận QTE)
-        if (kairi.position.x > transform.position.x)
+        // 1. LUÔN XOAY MẶT VỀ PHÍA KAIRI (Trừ khi đang bận QTE hoặc bị trúng đòn)
+        if (currentState != BossState.GetAttack)
         {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        else
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
+            if (kairi.position.x > transform.position.x)
+                transform.localScale = new Vector3(-1, 1, 1);
+            else
+                transform.localScale = new Vector3(1, 1, 1);
         }
 
-        // 2. LOGIC ÉP HOẠT ẢNH RUN THÔNG MINH
+        // 2. LOGIC ÉP HOẠT ẢNH RUN / IDLE THEO TRẠNG THÁI AI THỰC TẾ
         if (anim != null)
         {
-            float distanceToKairi = Vector3.Distance(transform.position, kairi.position);
-
-            // Kiểm tra xem Boss có đang thực sự di chuyển theo trục X hay không (vận tốc tuyệt đối > 0.2f)
-            // Điều này đúng cho cả lúc tự chạy lẫn lúc bị lực hút (PullForce) kéo lê đi trên sàn.
-            bool isMovingHorizontally = Mathf.Abs(rb.linearVelocity.x) > 0.2f;
-
-            // ĐIỀU KIỆN BẬT RUN: 
-            // Đang ở trạng thái đuổi theo (Chasing) HOẶC (Đang ngoài tầm đánh VÀ đang bị lực kéo di chuyển trục X)
-            bool shouldRun = (currentState == BossState.Chasing && grounded) ||
-                             (distanceToKairi > attackRadius && isMovingHorizontally);
+            bool shouldRun = (currentState == BossState.Chasing && !isAttacking && grounded);
 
             if (shouldRun)
             {
@@ -147,7 +163,8 @@ public class BossAI : MonoBehaviour
         }
 
         // 3. KÍCH HOẠT TẤN CÔNG
-        if (currentState == BossState.Attacking && Time.time >= nextAttackTime && grounded)
+        float distanceToKairiNow = Vector3.Distance(transform.position, kairi.position);
+        if (distanceToKairiNow <= attackRadius && Time.time >= nextAttackTime && grounded && !isAttacking)
         {
             ExecuteAttack();
         }
@@ -155,24 +172,121 @@ public class BossAI : MonoBehaviour
 
     void ExecuteAttack()
     {
-        isAttacking = true; // Khóa trạng thái lại
+        isAttacking = true;
+        currentState = BossState.Attacking;
         nextAttackTime = Time.time + attackRate;
 
         Debug.LogWarning($"<color=red>[BOSS ATTACK]</color> Boss kích hoạt hoạt ảnh vung kiếm!");
 
         if (anim != null)
         {
+            anim.SetBool("isBossRun", false);
+            anim.SetBool("isBossIdle", false);
             anim.SetTrigger("bossAttack");
         }
     }
 
-    // CỰC KỲ QUAN TRỌNG: Hãy gọi hàm này thông qua Animation Event ở cuối Animation "bossAttack"
-    // Giống hệt hàm ResetAttackStatus() bên KairiController của bạn!
     public void ResetBossAttackStatus()
     {
         isAttacking = false;
-        currentState = BossState.Idle; // Trả về Idle để tính toán lại khoảng cách ở khung hình sau
+        currentState = BossState.Idle;
         Debug.Log("[ANIMATION EVENT] Boss đã chém xong! Giải phóng khóa di chuyển.");
+    }
+
+    // --- HÀM TAKE DAMAGE ĐÃ ĐƯỢC ĐỒNG BỘ 100% SANG THANH MÁU UI ---
+    public void TakeDamage(float damage)
+    {
+        // 1. Xử lý logic Ảo ảnh ở Phase 2
+        if (currentPhase == 2 && !isRealBoss)
+        {
+            Debug.Log("Chém nhầm Ảo ảnh rồi!");
+            Destroy(gameObject);
+            return;
+        }
+
+        currentHP -= damage;
+        Debug.Log($"<color=red>[BOSS HP]: </color> {currentHP} | Nhận sát thương: {damage}");
+
+        // BỔ SUNG THẦN THÁNH: Báo cho thanh máu UI biết để tụt theo tương ứng
+        if (BossHealthController.Instance != null && isRealBoss)
+        {
+            BossHealthController.Instance.SyncBossDamage(damage, currentHP);
+        }
+
+        if (currentHP <= 0)
+        {
+            currentHP = 0;
+            if (currentPhase == 2 && isRealBoss)
+            {
+                StartPhase3QTE();
+            }
+            else
+            {
+                Debug.Log("[BOSS] Đã bị tiêu diệt hoàn toàn! Bắt đầu hiệu ứng tan biến...");
+
+                if (BossHealthController.Instance != null && isRealBoss)
+                {
+                    BossHealthController.Instance.TriggerBossDeath();
+                }
+                if (BossHealthController.Instance != null)
+                {
+                    BossHealthController.Instance.HideHealthBar();
+                }
+
+                // GỌI HÀM TAN BIẾN Ở ĐÂY
+                StartCoroutine(FadeOutAndDestroy());
+            }
+            return;
+        }
+
+        // 2. Kích hoạt trạng thái dính đòn khựng lại (Chỉ chạy khi Boss còn sống)
+        currentState = BossState.GetAttack;
+        hurtTimer = Time.time;
+        isAttacking = true; // Khóa tạm thời không cho tự động chuyển trạng thái tấn công
+
+        if (anim != null)
+        {
+            anim.SetBool("isBossRun", false);
+            anim.SetBool("isBossIdle", false);
+            anim.SetTrigger("getHit");
+        }
+
+        // Kiểm tra chuyển đổi Phase 2 dựa trên logic của BossAI
+        if (currentHP <= 400f && currentPhase == 1)
+        {
+            StartPhase2();
+
+            // Lệnh yêu cầu UI chuyển sang giao diện Phase 2
+            if (BossHealthController.Instance != null && isRealBoss)
+            {
+                BossHealthController.Instance.NotifyPhase2Transition();
+            }
+        }
+    }
+
+    void StartPhase2()
+    {
+        currentPhase = 2;
+        pullForce = 0;
+        Debug.LogWarning(">>>> PHÁT ĐỘNG GIAI ĐOẠN 2: BOSS ẨN THÂN, PHÂN THÂN CHI THUẬT! <<<<");
+
+        foreach (GameObject clone in allClones)
+        {
+            if (clone != null) clone.SetActive(true);
+        }
+    }
+
+    void StartPhase3QTE()
+    {
+        currentPhase = 3;
+        isQTEActive = true;
+        qteStep = 1;
+        qteTimer = qteTimeLimit;
+
+        if (rb != null) rb.linearVelocity = Vector2.zero;
+
+        Debug.LogWarning(">>>> PHÁT ĐỘNG GIAI ĐOẠN 3: BẢN HÒA TẤU CUỐI CÙNG! CHUẨN BỊ BẤM QTE! <<<<");
+        Debug.Log("<color=cyan>NÚT 1: Nhấn [SPACE] để Kairi vung kiếm chém!</color>");
     }
 
     void HandleGroundCheck()
@@ -244,52 +358,72 @@ public class BossAI : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void TakeDamage(float damage)
-    {
-        if (currentPhase == 2 && !isRealBoss)
-        {
-            Debug.Log("Chém nhầm Ảo ảnh rồi!");
-            Destroy(gameObject);
-            return;
-        }
-
-        currentHP -= damage;
-        Debug.Log("<color=red>Boss HP: </color>" + currentHP);
-
-        if (currentHP <= 400f && currentPhase == 1) StartPhase2();
-        if (currentHP <= 0 && currentPhase == 2 && isRealBoss) StartPhase3QTE();
-    }
-
-    void StartPhase2()
-    {
-        currentPhase = 2;
-        pullForce = 0;
-        Debug.LogWarning(">>>> PHÁT ĐỘNG GIAI ĐOẠN 2: BOSS ẨN THÂN, PHÂN THÂN CHI THUẬT! <<<<");
-
-        foreach (GameObject clone in allClones)
-        {
-            if (clone != null) clone.SetActive(true);
-        }
-    }
-
-    void StartPhase3QTE()
-    {
-        currentPhase = 3;
-        isQTEActive = true;
-        qteStep = 1;
-        qteTimer = qteTimeLimit;
-
-        Debug.LogWarning(">>>> PHÁT ĐỘNG GIAI ĐOẠN 3: BẢN HÒA TẤU CUỐI CÙNG! CHUẨN BỊ BẤM QTE! <<<<");
-        Debug.Log("<color=cyan>NÚT 1: Nhấn [SPACE] để Kairi vung kiếm chém!</color>");
-    }
-
-    // Vẽ vòng tròn kiểm tra chạm đất trong Scene để dễ debug
     void OnDrawGizmosSelected()
     {
         if (groundCheck != null)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+        }
+    }
+    // COROUTINE GIÚP BOSS MỜ DẦN VÀ TAN BIẾN
+    System.Collections.IEnumerator FadeOutAndDestroy()
+    {
+        // 1. Khóa toàn bộ vật lý và hành động để Boss không di chuyển/trúng đòn nữa
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.bodyType = RigidbodyType2D.Kinematic; // Biến thành vô hình với vật lý
+        }
+
+        // Tắt Collider để Kairi không chém trúng xác Boss nữa
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = false;
+
+        // Tắt cập nhật logic AI
+        this.enabled = false;
+
+        // 2. Lấy thành phần SpriteRenderer để chỉnh độ mờ (Alpha)
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            Color originalColor = spriteRenderer.color;
+            float fadeDuration = 1.5f; // Thời gian tan biến (1.5 giây), bạn có thể chỉnh tùy ý
+            float currentTime = 0f;
+
+            while (currentTime < fadeDuration)
+            {
+                currentTime += Time.deltaTime;
+                // Tính toán tỷ lệ mờ dần từ 1 về 0
+                float alpha = Mathf.Lerp(1f, 0f, currentTime / fadeDuration);
+
+                // Áp dụng màu mới với alpha giảm dần cho Boss
+                spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+
+                yield return null; // Chờ tới frame tiếp theo
+            }
+        }
+
+        // 3. Sau khi đã tan biến hoàn toàn (Alpha = 0), tiến hành xóa Boss khỏi màn chơi
+        Debug.Log("[BOSS] Đã tan biến hoàn toàn. Xóa GameObject.");
+        Destroy(gameObject);
+    }
+    // Tự động chạy khi toàn bộ hoặc một phần cơ thể Boss lọt vào màn hình Camera
+    private void OnBecameVisible()
+    {
+        // Chỉ kích hoạt khi Boss còn sống và không ở trạng thái QTE kết liễu
+        if (currentHP > 0 && currentPhase != 3 && BossHealthController.Instance != null)
+        {
+            BossHealthController.Instance.ShowHealthBar();
+        }
+    }
+
+    // Tự động chạy khi Boss đi hoàn toàn ra ngoài rìa màn hình Camera
+    private void OnBecameInvisible()
+    {
+        if (BossHealthController.Instance != null)
+        {
+            BossHealthController.Instance.HideHealthBar();
         }
     }
 }

@@ -17,6 +17,10 @@ public class KairiController : MonoBehaviour
     public LayerMask groundLayer;       // Chọn Layer "Midground"
     private bool grounded = true;
 
+    [Header("Double Jump Settings (MỚI)")]
+    public int maxJumps = 2;            // Số lần nhảy tối đa (2 tức là nhảy đôi)
+    private int jumpsRemaining;         // Số lần nhảy còn lại
+
     [Header("Combat Settings")]
     public float attackCooldown = 0.25f; // Thời gian tối thiểu giữa 2 lần nhận lệnh gốc
     public float comboResetTime = 0.8f;  // Thời gian tối đa để bấm đòn tiếp theo trước khi reset chuỗi
@@ -25,7 +29,7 @@ public class KairiController : MonoBehaviour
     private float lastAttackTime;
     private bool isAttacking = false;   // Biến cờ chặn đứng di chuyển khi đang chém dưới đất
 
-    // --- BỔ SUNG CƠ CHẾ ĐỆM COMBO (BUFFER) MƯỢT MÀ ---
+    // --- CƠ CHẾ KIỂM SOÁT ĐỆM COMBO (BUFFER) MƯỢT MÀ ---
     private bool inputReceived = false;  // Nhận biết người chơi có bấm gối đòn hay không
 
     [Header("VFX Settings")]
@@ -33,9 +37,22 @@ public class KairiController : MonoBehaviour
     public GameObject amberPrefab;       // Đưa Prefab Amber vào Combat Settings gốc cho đồng bộ
     public Transform attackPoint;       // KHÔNG ĐƯỢC để trống (None) trong Inspector
 
+    [Header("Combat Sát Thương")]
+    public float attackRange = 1.8f;     // Tầm chém xa của lưỡi kiếm Kairi
+    public LayerMask enemyLayer;        // Layer của Boss (Chọn Layer "Enemy")
+    public float attackDamage = 25f;     // Lượng sát thương gây ra mỗi cú chém
+
     [Header("Dash Settings")]
     public float dashForce = 12f;
     private bool isDashing = false;
+
+    [Header("Air Attack Settings")]
+    public float airAttackGravity = 50f;     // Tăng trọng lực cực đại để lao xuống thật nhanh
+    public float airAttackDownForce = 15f;   // Lực ép lao thẳng xuống dưới theo trục Y
+    private bool isAirAttacking = false;     // Biến cờ kiểm tra xem có đang bổ củi từ trên không hay không
+
+    [Tooltip("Đòn 1 = Index 0, Đòn 2 = Index 1, Đòn 3 = Index 2, Đòn 4 (Air) = Index 3")]
+    public float[] comboDamages = new float[4] { 20f, 25f, 40f, 60f }; // Mảng chứa sát thương riêng cho từng đòn
 
     void Start()
     {
@@ -49,13 +66,15 @@ public class KairiController : MonoBehaviour
 
         if (groundCheck == null) Debug.LogError("[CẢNH BÁO] Bạn chưa kéo GameObject chân vào ô Ground Check!");
         if (attackPoint == null) Debug.LogError("[CẢNH BÁO] Bạn chưa kéo vị trí chém vào ô Attack Point!");
+
+        jumpsRemaining = maxJumps; // Khởi tạo số lần nhảy ban đầu
     }
 
     void Update()
     {
         if (isDashing) return;
 
-        // 1. CƠ CHẾ KIỂM TRA CHẠM ĐẤT THÔNG MINH MỚI
+        // 1. CƠ CHẾ KIỂM TRA CHẠM ĐẤT THÔNG MINH MỚI (Cập nhật để nhận diện LandAirAttack)
         if (!grounded)
         {
             if (groundCheck != null)
@@ -64,7 +83,15 @@ public class KairiController : MonoBehaviour
                 if (hitGround && rb.linearVelocity.y <= 0.1f)
                 {
                     grounded = true;
-                    Debug.Log("<color=yellow>[GROUNDED]</color> Nhân vật đã tiếp đất an toàn. Khôi phục trạng thái.");
+                    jumpsRemaining = maxJumps; // RESET số lần nhảy khi chạm đất thành công!
+
+                    // Nếu đang trong trạng thái lao xuống chém (Air Attack) mà chạm đất
+                    if (isAirAttacking)
+                    {
+                        LandAirAttack();
+                    }
+
+                    Debug.Log("<color=yellow>[GROUNDED]</color> Nhân vật đã tiếp đất an toàn. Khôi phục trạng thái và lượt nhảy.");
                 }
             }
         }
@@ -73,7 +100,15 @@ public class KairiController : MonoBehaviour
             if (rb.linearVelocity.y < -1f && groundCheck != null)
             {
                 bool hitGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
-                if (!hitGround) grounded = false;
+                if (!hitGround)
+                {
+                    grounded = false;
+                    // Nếu nhân vật tự rơi khỏi rìa block (không phải chủ động bấm nhảy), trừ bớt 1 lượt nhảy đầu dưới đất
+                    if (jumpsRemaining == maxJumps)
+                    {
+                        jumpsRemaining--;
+                    }
+                }
             }
         }
 
@@ -99,7 +134,7 @@ public class KairiController : MonoBehaviour
             }
         }
 
-        // 2. DI CHUYỂN NGANG VỚI PHÍM A / D (ĐÃ LOẠI BỎ ĐOẠN TRÙNG LẶP CODE CŨ)
+        // 2. DI CHUYỂN NGANG VỚI PHÍM A / D
         moveX = 0f;
 
         if (!isAttacking)
@@ -128,13 +163,15 @@ public class KairiController : MonoBehaviour
             if (anim != null) anim.SetBool("isRunning", false);
         }
 
-        // 3. LOGIC PHÍM NHẢY W
+        // 3. LOGIC PHÍM NHẢY W (Cải tiến hỗ trợ Nhảy Đôi - Double Jump)
         if (Input.GetKeyDown(KeyCode.W))
         {
+            // Trường hợp 1: Nhảy từ mặt đất lên
             if (grounded && !isAttacking)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 grounded = false;
+                jumpsRemaining--; // Tiêu hao 1 lượt nhảy
 
                 if (anim != null)
                 {
@@ -142,14 +179,38 @@ public class KairiController : MonoBehaviour
                     anim.SetBool("isGrounded", false);
                     anim.SetTrigger("jump");
                 }
-                Debug.Log("<color=green>[JUMP SUCCESS]</color> Kairi đã cất cánh!");
+                Debug.Log("<color=green>[JUMP 1 SUCCESS]</color> Kairi đã cất cánh từ mặt đất!");
+            }
+            // Trường hợp 2: Đang ở trên không và còn lượt nhảy đôi (Không kích hoạt khi đang bổ củi)
+            else if (!grounded && jumpsRemaining > 0 && !isAirAttacking)
+            {
+                // Reset lại vận tốc Y và đẩy lên lần nữa để cú nhảy đạt đủ độ cao đồng đều
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                jumpsRemaining--; // Tiêu hao lượt nhảy đôi cuối cùng
+
+                if (anim != null)
+                {
+                    anim.speed = 1f; // Mở khóa tốc độ animator nếu frame lơ lửng cũ đang bị đóng băng (speed = 0)
+                    anim.ResetTrigger("jump"); // Xóa trigger cũ đề phòng bị dồn lệnh
+                    anim.SetTrigger("jump");   // Kích hoạt lại để phát lại hoạt ảnh nhảy
+                }
+                Debug.Log("<color=cyan>[DOUBLE JUMP SUCCESS]</color> Kairi đã kích hoạt nhảy đôi trên không trung!");
             }
         }
 
-        // 4. LOGIC ĐÒN CHÉM LIÊN HOÀN J (TỐI ƯU HÓA BUFFER)
-        if (Input.GetKeyDown(KeyCode.J))
+        // 4. LOGIC ĐÒN TẤN CÔNG BẰNG CHUỘT TRÁI (Chia làm 2 trường hợp: Đất vs Không)
+        if (Input.GetMouseButtonDown(0))
         {
-            AttackCombo();
+            if (grounded)
+            {
+                // Ở dưới đất: Chém Combo liên hoàn đòn 1 -> 2 -> 3
+                AttackCombo();
+            }
+            else if (!grounded && !isAirAttacking && !isDashing)
+            {
+                // Ở trên không: Kích hoạt Không kích bổ củi lao thẳng xuống (Đòn số 4)
+                StartAirAttack();
+            }
         }
 
         // Tự động reset chuỗi combo nếu ngừng bấm quá lâu hoặc hết thời gian chờ
@@ -157,8 +218,12 @@ public class KairiController : MonoBehaviour
         {
             if (comboCount != 0 || isAttacking)
             {
-                Debug.Log("[COMBO TIMEOUT] Tự động giải phóng trạng thái và reset combo!");
-                ResetComboEntirely();
+                // Chỉ tự động reset nếu không phải đang trong trạng thái Không Kích lao xuống
+                if (!isAirAttacking)
+                {
+                    Debug.Log("[COMBO TIMEOUT] Tự động giải phóng trạng thái và reset combo!");
+                    ResetComboEntirely();
+                }
             }
         }
 
@@ -172,7 +237,14 @@ public class KairiController : MonoBehaviour
     void FixedUpdate()
     {
         if (isDashing) return;
-        rb.gravityScale = 1f;
+
+        // TỐI ƯU: Chỉ đặt gravityScale = 1f nếu KHÔNG phải đang thực hiện đòn bổ củi từ trên không.
+        // Điều này ngăn chặn việc FixedUpdate ghi đè và làm mất lực rơi mạnh (airAttackGravity) của đòn đánh số 4.
+        if (!isAirAttacking)
+        {
+            rb.gravityScale = 1f;
+        }
+
         rb.linearVelocity = new Vector2(moveX * currentSpeed, rb.linearVelocity.y);
     }
 
@@ -180,10 +252,9 @@ public class KairiController : MonoBehaviour
     {
         if (attackPoint == null) return;
 
-        // Nếu đang chém đòn trước đó mà người chơi bấm tiếp J
+        // Nếu đang chém đòn trước đó mà người chơi bấm tiếp chuột
         if (isAttacking)
         {
-            // Nếu đòn đánh hiện tại đã trôi qua thời gian Cooldown tối thiểu, ghi nhận đệm lệnh
             if (Time.time - lastAttackTime >= attackCooldown)
             {
                 inputReceived = true;
@@ -192,12 +263,11 @@ public class KairiController : MonoBehaviour
             return;
         }
 
-        // Kích hoạt phát đòn đánh thực tế
         isAttacking = true;
         lastAttackTime = Time.time;
         comboCount++;
 
-        if (comboCount > 4) comboCount = 1;
+        if (comboCount > 3) comboCount = 1; // Giới hạn chuỗi chém đất chỉ từ đòn 1 đến 3
 
         Debug.Log($"<color=cyan>[COMBAT]</color> Kích hoạt đòn chém Combo số: {comboCount}");
 
@@ -207,37 +277,59 @@ public class KairiController : MonoBehaviour
             anim.SetTrigger("attack");
         }
 
-        // Tạo hiệu ứng VFX tương ứng
+        if (comboCount >= 1 && comboCount <= 3 && comboCount <= comboDamages.Length)
+        {
+            float currentDamage = comboDamages[comboCount - 1];
+            CheckHitDamage(currentDamage);
+        }
+
         if (comboCount <= 3)
         {
             SpawnSlashVFX(purpleSlashPrefab);
         }
-        else if (comboCount == 4)
+
+        if (comboCount <= 3)
         {
-            if (amberPrefab != null)
-            {
-                Instantiate(amberPrefab, attackPoint.position, transform.rotation);
-            }
-            comboCount = 0; // Đòn cuối reset bộ đếm
+            SpawnSlashVFX(purpleSlashPrefab);
         }
     }
 
-    // --- CỰC KỲ QUAN TRỌNG: GỌI HÀM NÀY QUA ANIMATION EVENT Ở ĐIỂM CHUYỂN COMBO (THƯỜNG Ở 70%-80% HOẠT ẢNH) ---
+    // Sửa hàm: Thêm tham số đầu vào 'damage' để xử lý sát thương riêng biệt
+    void CheckHitDamage(float damage)
+    {
+        // Quét tất cả các Collider nằm trong tầm chém thuộc layer "Enemy"
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            // Tìm script BossAI gắn trên đối tượng bị chém (hoặc cha của nó)
+            BossAI boss = enemy.GetComponent<BossAI>();
+            if (boss == null)
+            {
+                boss = enemy.GetComponentInParent<BossAI>();
+            }
+
+            // Nếu tìm thấy BossAI, gây sát thương lên nó theo lượng damage được truyền vào
+            if (boss != null)
+            {
+                boss.TakeDamage(damage);
+                Debug.Log($"<color=lime>[HIT SUCCESS]</color> Đòn đánh gây: {damage} damage lên Boss!");
+            }
+        }
+    }
+
     public void CheckComboBuffer()
     {
         if (inputReceived)
         {
-            // Nếu có đệm lệnh từ trước, giải phóng cờ để đánh tiếp luôn đòn sau mượt mà
             inputReceived = false;
             isAttacking = false;
             AttackCombo();
         }
     }
 
-    // CỰC KỲ QUAN TRỌNG: Gọi hàm này ở FRAME CUỐI CÙNG của cả 4 hoạt ảnh Attack để đóng đòn hoàn toàn nếu người chơi dừng bấm
     public void ResetAttackStatus()
     {
-        // Chỉ reset khi không có đệm lệnh nào đang chờ chạy tiếp
         if (!inputReceived)
         {
             isAttacking = false;
@@ -266,14 +358,13 @@ public class KairiController : MonoBehaviour
     System.Collections.IEnumerator PerformDash()
     {
         isDashing = true;
-        ResetComboEntirely(); // Hủy combo khi lướt né đòn
+        ResetComboEntirely();
         if (anim != null) anim.SetBool("isDashing", true);
 
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
 
         float facingDirection = transform.localScale.x;
-        // Chú ý: Đảo dấu lực lướt tương ứng với localScale ngược hướng của bạn
         rb.linearVelocity = new Vector2(-facingDirection * dashForce, 0f);
 
         yield return new WaitForSeconds(0.2f);
@@ -292,5 +383,55 @@ public class KairiController : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
         }
+
+        if (attackPoint != null)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        }
+    }
+
+    void StartAirAttack()
+    {
+        isAirAttacking = true;
+        isAttacking = true;
+        comboCount = 4;
+
+        Debug.Log("<color=red>[AIR ATTACK]</color> Kairi kích hoạt đòn bổ củi từ trên không!");
+
+        if (anim != null)
+        {
+            anim.speed = 1f; // Trả lại tốc độ hoạt ảnh gốc cho đòn chém
+            anim.SetInteger("comboCount", 4);
+            anim.SetTrigger("attack");
+        }
+
+        rb.gravityScale = airAttackGravity;
+        rb.linearVelocity = new Vector2(0f, -airAttackDownForce);
+    }
+
+    void LandAirAttack()
+    {
+        isAirAttacking = false;
+        rb.gravityScale = 1f;
+
+        Debug.Log("<color=orange>[AIR ATTACK LAND]</color> Chạm đất! Tạo chấn động vật lý và VFX.");
+
+        if (comboDamages.Length >= 4)
+        {
+            float airDamage = comboDamages[3]; // Lấy sát thương đòn 4
+            CheckHitDamage(airDamage);
+        }
+        else
+        {
+            CheckHitDamage(50f); // Sát thương mặc định dự phòng nếu bạn quên điền mảng ngoài Inspector
+        }
+
+        if (amberPrefab != null && attackPoint != null)
+        {
+            Instantiate(amberPrefab, attackPoint.position, transform.rotation);
+        }
+
+        Invoke("ResetAttackStatus", 0.15f);
     }
 }
