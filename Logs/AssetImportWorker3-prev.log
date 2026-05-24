@@ -1,0 +1,641 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.3/staging' branch; Version is '6000.3.11f1 (3000ef702840) revision 3145967'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26200) CoreSingleLanguage' Language: 'en' Physical Memory: 16010 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Admin" at "2026-05-23T14:40:39.573026Z"
+System  architecture: x64
+Process architecture: x64
+Date: 2026-05-23T14:40:39Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.3.11f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker3
+-projectPath
+G:/STUDY/GameDev/App2/The Traitor's Lullaby[2]/The Traitor's Lullaby[3]
+-logFile
+Logs/AssetImportWorker3.log
+-srvPort
+61306
+-licensingIpc
+LicenseClient-Admin
+-job-worker-count
+7
+-background-job-worker-count
+8
+-gc-helper-count
+1
+-name
+AssetImport
+Successfully changed project path to: G:/STUDY/GameDev/App2/The Traitor's Lullaby[2]/The Traitor's Lullaby[3]
+G:/STUDY/GameDev/App2/The Traitor's Lullaby[2]/The Traitor's Lullaby[3]
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+Player connection [12364]  Target information:
+
+Player connection [12364]  * "[IP] 172.29.0.1 [Port] 0 [Flags] 2 [Guid] 2657743821 [EditorId] 2657743821 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-SFSR5TO) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [12364]  * "[IP] 192.168.1.6 [Port] 0 [Flags] 2 [Guid] 2657743821 [EditorId] 2657743821 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-SFSR5TO) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [12364] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [12364] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 7
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 1.96 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.3.11f1 (3000ef702840)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.3.11f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path G:/STUDY/GameDev/App2/The Traitor's Lullaby[2]/The Traitor's Lullaby[3]/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 4050 Laptop GPU (ID=0x28e1)
+    Vendor:   NVIDIA
+    VRAM:     5921 MB
+    Driver:   32.0.15.7283
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.3.11f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.3.11f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56204
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.0'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-Admin"
+[Licensing::IpcConnector] LicenseClient-Admin channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Admin-6000.3.11" at "2026-05-23T14:40:40.4721581Z"
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.0+23225a6
+  Session Id:              f286f736d6ce47ae83175fa4d8110d55
+  Correlation Id:          b2d66e623d8736ef0b749c7a4781b8e6
+  External correlation Id: 1854798820351385334
+  Machine Id:              mHmvHwRkHLaOPFabNUsidTmm7eo=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Admin-6000.3.11" (connect: 0.00s, validation: 0.00s, handshake: 0.10s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Admin-6000.3.11-notifications" at "2026-05-23T14:40:40.5694645Z"
+[Licensing::Module] Licensing Background thread has ended after 1.00s
+[Licensing::Module] Licensing is initialized (took 0.18s).
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 18968381738591-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.11f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Registered in 0.187412 seconds.
+- Loaded All Assemblies, in  0.530 seconds
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Package Manager log level set to [2]
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.327 seconds
+Domain Reload Profiling: 856ms
+	BeginReloadAssembly (118ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (40ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (226ms)
+	LoadAllAssembliesAndSetupDomain (132ms)
+		LoadAssemblies (116ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (129ms)
+			TypeCache.Refresh (128ms)
+				TypeCache.ScanAssembly (117ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (328ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (292ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (41ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (66ms)
+			ProcessInitializeOnLoadAttributes (113ms)
+			ProcessInitializeOnLoadMethodAttributes (67ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+- Loaded All Assemblies, in  0.691 seconds
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 0.97 ms, found 4 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.786 seconds
+Domain Reload Profiling: 1476ms
+	BeginReloadAssembly (135ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (23ms)
+	RebuildCommonClasses (28ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (30ms)
+	LoadAllAssembliesAndSetupDomain (486ms)
+		LoadAssemblies (324ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (236ms)
+			TypeCache.Refresh (153ms)
+				TypeCache.ScanAssembly (140ms)
+			BuildScriptInfoCaches (70ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (787ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (655ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (172ms)
+			ProcessInitializeOnLoadAttributes (344ms)
+			ProcessInitializeOnLoadMethodAttributes (122ms)
+			AfterProcessingInitializeOnLoad (3ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Refreshing native plugins compatible for Editor in 2.23 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 17 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7313 unused Assets / (4.2 MB). Loaded Objects now: 8133.
+Memory consumption went from 159.1 MB to 154.9 MB.
+Total: 8.993400 ms (FindLiveObjects: 1.321600 ms CreateObjectMapping: 0.632300 ms MarkObjects: 5.184600 ms  DeleteObjects: 1.853600 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 195101.131152 seconds.
+  path: Assets/Animations/Kairi/1000002303_0.controller
+  artifactKey: Guid(4968f9feba8245340b3693af3a4dab43) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/1000002303_0.controller using Guid(4968f9feba8245340b3693af3a4dab43) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '63697d3b0fb89de3e5ce9833b9d6a49c') in 0.0832516 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 89.017011 seconds.
+  path: Assets/Animations/Kairi/1000002304_0.controller
+  artifactKey: Guid(005202371897daa408b977d782763e87) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/1000002304_0.controller using Guid(005202371897daa408b977d782763e87) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '8ae2e3f6029f2bb46ed87dfef8ee1fad') in 0.0207045 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 650.717531 seconds.
+  path: Assets/Animations/Kairi/1000002305_0.controller
+  artifactKey: Guid(63d96858fdfd2b84c9e45e2bf84ed59d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/1000002305_0.controller using Guid(63d96858fdfd2b84c9e45e2bf84ed59d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '97c102f205b170d983abb62169b85730') in 0.0219307 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 118.489659 seconds.
+  path: Assets/Animations/Kairi/1000002306_0.controller
+  artifactKey: Guid(4c2f035444f9db446b135796fa70b0d7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/1000002306_0.controller using Guid(4c2f035444f9db446b135796fa70b0d7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '196d1ebc86c7cc28f981bdd65c246d5b') in 0.0211313 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 23.147973 seconds.
+  path: Assets/Animations/Kairi/Kairi_dash.anim
+  artifactKey: Guid(dcaf81fa8bb0ba84483ec6b9b7621737) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_dash.anim using Guid(dcaf81fa8bb0ba84483ec6b9b7621737) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '6b770ad6bc80fc1993abdc3f9ef9add2') in 0.0518913 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/SampleScene.unity
+  artifactKey: Guid(8c9cfa26abfee488c85f1582747f6a02) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/SampleScene.unity using Guid(8c9cfa26abfee488c85f1582747f6a02) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '72ad5e62e5218eb5bcd70af75d399b67') in 0.1314878 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 78.795755 seconds.
+  path: Assets/Animations/Kairi/1000002311_0.controller
+  artifactKey: Guid(875a4deb3dbb8ce4fbdbf59af871e442) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/1000002311_0.controller using Guid(875a4deb3dbb8ce4fbdbf59af871e442) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'e0ba74ffaf162b2ca1a92f048ab6f937') in 0.021853 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 27.727735 seconds.
+  path: Assets/Animations/Kairi/1000002311_0.controller
+  artifactKey: Guid(875a4deb3dbb8ce4fbdbf59af871e442) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/1000002311_0.controller using Guid(875a4deb3dbb8ce4fbdbf59af871e442) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'f7044775ce510e77293df7a3521221bc') in 0.0233699 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 35.040767 seconds.
+  path: Assets/Animations/Kairi/1000002308_0.controller
+  artifactKey: Guid(4d4982665ad00af4299d77efc2abcf7c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/1000002308_0.controller using Guid(4d4982665ad00af4299d77efc2abcf7c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '022ab44b8d11db7a2689c55a379db2e9') in 0.0150099 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 43.460096 seconds.
+  path: Assets/Animations/Kairi/1000002309_0.controller
+  artifactKey: Guid(8c502723a89d1b1468acfdd37427383a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/1000002309_0.controller using Guid(8c502723a89d1b1468acfdd37427383a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'fbec07a0a82a868b661126378941a3c1') in 0.0117975 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 108.158307 seconds.
+  path: Assets/Animations/Kairi/1000002310_0.controller
+  artifactKey: Guid(5008c00e3badd1d46b6c415c7f226e9b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/1000002310_0.controller using Guid(5008c00e3badd1d46b6c415c7f226e9b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '9a7a0dab43ca293c848852528f0f2b18') in 0.0152791 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 197.025420 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_1_0.controller
+  artifactKey: Guid(ba1f772fcc70bb742a0cb8dd50a47059) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_attack_1_0.controller using Guid(ba1f772fcc70bb742a0cb8dd50a47059) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '8992f530617b25f4df95de80dace5652') in 0.0176723 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 174.400625 seconds.
+  path: Assets/Animations/Kairi/Get_attack.png
+  artifactKey: Guid(d183e619dace0e64296602549e8a9505) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/Get_attack.png using Guid(d183e619dace0e64296602549e8a9505) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)[Licensing::Client] Successfully resolved entitlement details
+ -> (artifact id: 'b5bbfb3d5146146bb387704fe5a02ad7') in 0.1755971 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Animations/Kairi/Jump.png
+  artifactKey: Guid(5781f2778e2c7e84cb1f05587ec87567) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/Jump.png using Guid(5781f2778e2c7e84cb1f05587ec87567) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a91f4ac13e93b0bdd6a1aac5aee50b5c') in 0.1112373 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 16
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.409502 seconds.
+  path: Assets/Animations/Kairi/Jump.png
+  artifactKey: Guid(5781f2778e2c7e84cb1f05587ec87567) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Jump.png using Guid(5781f2778e2c7e84cb1f05587ec87567) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'ba651dbeab20b355718f1249ae0faa3b') in 0.096212 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 16
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Animations/Kairi/Dash.png
+  artifactKey: Guid(e984122dfffada34486ac6cfc4f1e99d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Dash.png using Guid(e984122dfffada34486ac6cfc4f1e99d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '5998c74f14f31eb8397d820c03ac0c86') in 0.0405069 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Animations/Kairi/kairi_attack_3.png
+  artifactKey: Guid(1a87aa1d16c700e46b9efdfabd728070) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/kairi_attack_3.png using Guid(1a87aa1d16c700e46b9efdfabd728070) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '108cb921df921aa14b3c80a6fa0b87c7') in 0.0323699 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 31.058461 seconds.
+  path: Assets/Animations/Kairi/Idle.png
+  artifactKey: Guid(12daf13622724e245ada9ac56f1f6ac9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/Idle.png using Guid(12daf13622724e245ada9ac56f1f6ac9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6b0e03a6c6358aaa574b3f1237783c6a') in 0.0680192 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Animations/Kairi/kairi_attack_3.png
+  artifactKey: Guid(1a87aa1d16c700e46b9efdfabd728070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/kairi_attack_3.png using Guid(1a87aa1d16c700e46b9efdfabd728070) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '09800de014465ba94ba484ab85f09ac3') in 0.0802837 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.540705 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_4.png
+  artifactKey: Guid(8b2591f8a8bb4884a99f0a48b026a0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_attack_4.png using Guid(8b2591f8a8bb4884a99f0a48b026a0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '3b92b27488a51c9f289cff5653e38c46') in 0.0360555 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Animations/Kairi/Dash.png
+  artifactKey: Guid(e984122dfffada34486ac6cfc4f1e99d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Dash.png using Guid(e984122dfffada34486ac6cfc4f1e99d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '3d6ecb0e0ebdb07f33f795876c074c3b') in 0.029694 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_1.psd
+  artifactKey: Guid(a93e326a8492578409f174fdb4504917) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_attack_1.psd using Guid(a93e326a8492578409f174fdb4504917) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'a380e2e85250671fb4ed6fdd61c6a399') in 0.0379371 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.052514 seconds.
+  path: Assets/Animations/Kairi/Idle.png
+  artifactKey: Guid(12daf13622724e245ada9ac56f1f6ac9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/Idle.png using Guid(12daf13622724e245ada9ac56f1f6ac9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f0a55abdb83daaf56ccb88d54f863726') in 0.0320594 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_1.psd
+  artifactKey: Guid(a93e326a8492578409f174fdb4504917) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/Kairi_attack_1.psd using Guid(a93e326a8492578409f174fdb4504917) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '05b49c7941bb34232a383dcb91336465') in 0.0900396 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.575815 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_4.png
+  artifactKey: Guid(8b2591f8a8bb4884a99f0a48b026a0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_attack_4.png using Guid(8b2591f8a8bb4884a99f0a48b026a0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '1c3a2708e637f4c2fead9fd2834623c6') in 0.0277269 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Animations/Kairi/Get_attack.png
+  artifactKey: Guid(d183e619dace0e64296602549e8a9505) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Get_attack.png using Guid(d183e619dace0e64296602549e8a9505) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '30882a02ffb226f572f8d78f20aacab3') in 0.027519 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 57.631850 seconds.
+  path: Assets/Animations/Kairi/Idle.png
+  artifactKey: Guid(12daf13622724e245ada9ac56f1f6ac9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/Idle.png using Guid(12daf13622724e245ada9ac56f1f6ac9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fbff60ba9919579754b5a3db36f3bad6') in 0.052439 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_1.psd
+  artifactKey: Guid(a93e326a8492578409f174fdb4504917) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/Kairi_attack_1.psd using Guid(a93e326a8492578409f174fdb4504917) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ec494242c8b7c50c5ab6d2ef49427f68') in 0.0724512 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.579021 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_4.png
+  artifactKey: Guid(8b2591f8a8bb4884a99f0a48b026a0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_attack_4.png using Guid(8b2591f8a8bb4884a99f0a48b026a0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '2f0e98d5e24f7335c8646cc6c15da1e0') in 0.0318123 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Animations/Kairi/kairi_attack_3.png
+  artifactKey: Guid(1a87aa1d16c700e46b9efdfabd728070) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/kairi_attack_3.png using Guid(1a87aa1d16c700e46b9efdfabd728070) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '245080f5ca347cad1e8cfd28feb67d12') in 0.0303878 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.608212 seconds.
+  path: Assets/Animations/Kairi/Idle.png
+  artifactKey: Guid(12daf13622724e245ada9ac56f1f6ac9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/Idle.png using Guid(12daf13622724e245ada9ac56f1f6ac9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2778c4092b4a484bb4753c8bd5da2fc8') in 0.070881 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_1.psd
+  artifactKey: Guid(a93e326a8492578409f174fdb4504917) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/Kairi_attack_1.psd using Guid(a93e326a8492578409f174fdb4504917) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'eb1663588c0d0f9d7b1ebf21ce784a89') in 0.0651711 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.557816 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_4.png
+  artifactKey: Guid(8b2591f8a8bb4884a99f0a48b026a0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_attack_4.png using Guid(8b2591f8a8bb4884a99f0a48b026a0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'c5ab3b965d3e519cdea2f19463d2cea5') in 0.0380761 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_1.psd
+  artifactKey: Guid(a93e326a8492578409f174fdb4504917) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_attack_1.psd using Guid(a93e326a8492578409f174fdb4504917) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'f5f04541dc6d665ea7743677f71fd4f1') in 0.0322207 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+
+========================================================================
+Received Import Request.
+  Time since last request: 25.463332 seconds.
+  path: Assets/Animations/Kairi/Idle.png
+  artifactKey: Guid(12daf13622724e245ada9ac56f1f6ac9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/Idle.png using Guid(12daf13622724e245ada9ac56f1f6ac9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9a1c05ab3c95eab47227454d81242d0d') in 0.102999 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_1.psd
+  artifactKey: Guid(a93e326a8492578409f174fdb4504917) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/Kairi_attack_1.psd using Guid(a93e326a8492578409f174fdb4504917) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '71e1463352ba3bb75f7fbaf6a08d014b') in 0.0979081 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.553246 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_4.png
+  artifactKey: Guid(8b2591f8a8bb4884a99f0a48b026a0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_attack_4.png using Guid(8b2591f8a8bb4884a99f0a48b026a0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '3f0bcb1f6aafb490373303bd4863ff64') in 0.0464619 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Animations/Kairi/kairi_attack_3.png
+  artifactKey: Guid(1a87aa1d16c700e46b9efdfabd728070) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/kairi_attack_3.png using Guid(1a87aa1d16c700e46b9efdfabd728070) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '66791b9fc3bef908f4118dcf33d84141') in 0.0396196 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.767146 seconds.
+  path: Assets/Animations/Kairi/Get_attack.png
+  artifactKey: Guid(d183e619dace0e64296602549e8a9505) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/Get_attack.png using Guid(d183e619dace0e64296602549e8a9505) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4b372b1ccc058552492a4c9906db859f') in 0.1318022 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Animations/Kairi/kairi_attack_3.png
+  artifactKey: Guid(1a87aa1d16c700e46b9efdfabd728070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/kairi_attack_3.png using Guid(1a87aa1d16c700e46b9efdfabd728070) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd9633d99276f6c05acee49408c8177be') in 0.0840297 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.489327 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_4.png
+  artifactKey: Guid(8b2591f8a8bb4884a99f0a48b026a0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_attack_4.png using Guid(8b2591f8a8bb4884a99f0a48b026a0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '78bdaff0f742f672841287cb16bcda8f') in 0.0668911 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_1.psd
+  artifactKey: Guid(a93e326a8492578409f174fdb4504917) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_attack_1.psd using Guid(a93e326a8492578409f174fdb4504917) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '83cb21ccd31b40ad72addf7488ac740c') in 0.0614163 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.087290 seconds.
+  path: Assets/Animations/Kairi/Get_attack.png
+  artifactKey: Guid(d183e619dace0e64296602549e8a9505) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/Get_attack.png using Guid(d183e619dace0e64296602549e8a9505) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6137153fd2d0c251011d3144221261bf') in 0.1355635 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Animations/Kairi/kairi_attack_3.png
+  artifactKey: Guid(1a87aa1d16c700e46b9efdfabd728070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Kairi/kairi_attack_3.png using Guid(1a87aa1d16c700e46b9efdfabd728070) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '290263fe0828036c02dba8f9e388d20a') in 0.0770938 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.454910 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_4.png
+  artifactKey: Guid(8b2591f8a8bb4884a99f0a48b026a0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_attack_4.png using Guid(8b2591f8a8bb4884a99f0a48b026a0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'b10992b39d2d1b25af68eee913f5a265') in 0.0792684 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack_1.psd
+  artifactKey: Guid(a93e326a8492578409f174fdb4504917) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_attack_1.psd using Guid(a93e326a8492578409f174fdb4504917) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'b19d54bedf757ea7675ca40e46d9f3c0') in 0.0894882 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+
+========================================================================
+Received Import Request.
+  Time since last request: 818.169427 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack3.anim
+  artifactKey: Guid(a6539078f76d0694dbf60127b791c64f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_attack3.anim using Guid(a6539078f76d0694dbf60127b791c64f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '684e3707b9454136e9c25fdcfaf0ee0d') in 0.0339782 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Animations/Kairi/Kairi_attack1.anim
+  artifactKey: Guid(f4e4f51adf0c08846ac67621bc82ce21) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi_attack1.anim using Guid(f4e4f51adf0c08846ac67621bc82ce21) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '3adc8f89b161e5cc48c2e26df05c905f') in 0.0309883 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Animations/Kairi/Kairi.controller
+  artifactKey: Guid(4968f9feba8245340b3693af3a4dab43) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animations/Kairi/Kairi.controller using Guid(4968f9feba8245340b3693af3a4dab43) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '7dad75ae674d953e4955c965ddb33ea4') in 0.0444242 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 24
+
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
