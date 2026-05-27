@@ -139,8 +139,14 @@ public class KairiController : MonoBehaviour
 
         if (!isAttacking)
         {
-            if (Input.GetKey(KeyCode.A)) moveX = -1f;
-            if (Input.GetKey(KeyCode.D)) moveX = 1f;
+            if (!isAttacking)
+            {
+                KeyCode left = (KeyBindManager.Instance != null) ? KeyBindManager.Instance.MoveLeftKey : KeyCode.A;
+                KeyCode right = (KeyBindManager.Instance != null) ? KeyBindManager.Instance.MoveRightKey : KeyCode.D;
+
+                if (Input.GetKey(left)) moveX = -1f;
+                if (Input.GetKey(right)) moveX = 1f;
+            }
         }
         else
         {
@@ -164,7 +170,8 @@ public class KairiController : MonoBehaviour
         }
 
         // 3. LOGIC PHÍM NHẢY W (Cải tiến hỗ trợ Nhảy Đôi - Double Jump)
-        if (Input.GetKeyDown(KeyCode.W))
+        KeyCode jump = (KeyBindManager.Instance != null) ? KeyBindManager.Instance.JumpKey : KeyCode.W;
+        if (Input.GetKeyDown(jump))
         {
             // Trường hợp 1: Nhảy từ mặt đất lên
             if (grounded && !isAttacking)
@@ -228,7 +235,8 @@ public class KairiController : MonoBehaviour
         }
 
         // 5. LOGIC PHÍM LƯỚT LEFT SHIFT
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
+        KeyCode dash = (KeyBindManager.Instance != null) ? KeyBindManager.Instance.DashKey : KeyCode.LeftShift;
+        if (Input.GetKeyDown(dash) && !isDashing)
         {
             StartCoroutine(PerformDash());
         }

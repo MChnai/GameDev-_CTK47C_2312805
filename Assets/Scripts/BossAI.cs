@@ -355,6 +355,8 @@ public class BossAI : MonoBehaviour
         Debug.LogWarning("CHIẾN THẮNG! LỚP NHỰA ĐEN TAN VỠ, KAIRI THU KIẾM!");
         Debug.LogWarning("Hết Demo - Bạn đã hoàn thành bài tập lớn xuất sắc!");
         Debug.LogWarning("=========================================");
+
+        VictoryManager.Instance.TriggerVictory();
         Destroy(gameObject);
     }
 
@@ -424,6 +426,7 @@ public class BossAI : MonoBehaviour
         if (BossHealthController.Instance != null)
         {
             BossHealthController.Instance.HideHealthBar();
+            EndGameVictory();
         }
     }
 }
